@@ -20,9 +20,13 @@ is more resistant to nonce misuse.
 **More Information**
 
 [IETF XChaCha20 Draft](https://tools.ietf.org/html/draft-arciszewski-xchacha-02)
+
 [Bernstein's ChaCha Web page](http://cr.yp.to/chacha.html)
+
 [Libsodium Documentation](https://libsodium.gitbook.io/doc/advanced/stream_ciphers/xchacha20)
+
 [Crypto++ Documentation](https://www.cryptopp.com/wiki/XChaCha20)
+
 [Wikipedia](https://en.wikipedia.org/wiki/Salsa20)
 
 **WARNING**
