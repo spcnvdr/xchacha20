@@ -4,7 +4,8 @@ released into the public domain. This code is based on Bernstein's
 can be found at the following here: http://cr.yp.to/chacha.html
 
 This project also contains code based on part of the libsodium cryptographic
-library. The xchacha_hchacha function was borrowed from libsodium and modified.
+library. The xchacha_hchacha and xchacha_set_counter functions were borrowed 
+from libsodium and modified.
 More information about libsodium can be found at the following
 websites:
 https://github.com/jedisct1/libsodium

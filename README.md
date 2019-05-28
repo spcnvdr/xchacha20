@@ -30,20 +30,6 @@ is more resistant to nonce misuse.
 I am not a cryptographer so use this library at your own risk.  
 
 
-
-**What Redact does not do**
-
-Note that while this program modifies the current log files to remove some or
-all traces of a given username/host it does NOT modify old caches of those log
-files. For example, this program does not and cannot wipe gzipped backups
-of old log files created by logrotate. Also, there maybe multiple log files
-because old copies are renamed in the format LOGNAME.1 and these files
-are not wiped by default either. However, these files can be wiped by setting
-the appropriate constants in the program (WTMPFILE, UTMPFILE, etc.) and
-recompiling it. Finally, this program currently does not support wiping log
-reports, such as wtmp.report that are sometimes generated.
-
-
 **Getting Started**
 
 Import the library into your project
