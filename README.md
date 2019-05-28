@@ -1,0 +1,91 @@
+# XChaCha20 - Extended Nonce version of ChaCha20
+
+XChaCha20 is a stream cipher based on ChaCha20. XChaCha20 uses a 256-bit
+key and a 192-bit nonce. According to an [IETF draft:](https://tools.ietf.org/html/draft-arciszewski-xchacha-02), "The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
+ChaCha-based ciphersuites to accept a 192-bit nonce with similar guarantees
+to the original construction, except with a much lower probability of
+nonce misuse occurring. This enables XChaCha constructions to be stateless,
+while retaining the same security assumptions as ChaCha."
+Also, since XChaCha20 does not use any look up tables, it is immune to
+timing attacks. This library is based on Daniel J. Bernstein's reference
+implementation of the ChaCha stream cipher.
+
+I decided to make this small C library for XChaCha20 because I could not
+find one. Unlike some other libraries, it only allows using XChaCha20 with
+a 256-bit key and a 192-bit nonce. No other key sizes or nonce sizes are
+allowed. A large benefit of using XChaCha20 over the regular ChaCha20 is that
+the larger nonce (192 bits v.s. 64 bits) allows the use of random nonces and
+is more resistant to nonce misuse.
+
+**More Information**
+
+[IETF XChaCha20 Draft](https://tools.ietf.org/html/draft-arciszewski-xchacha-02)
+[Bernstein's ChaCha Web page](http://cr.yp.to/chacha.html)
+[Libsodium Documentation](https://libsodium.gitbook.io/doc/advanced/stream_ciphers/xchacha20)
+[Crypto++ Documentation](https://www.cryptopp.com/wiki/XChaCha20)
+[Wikipedia](https://en.wikipedia.org/wiki/Salsa20)
+
+**WARNING**
+
+I am not a cryptographer so use this library at your own risk.  
+
+
+
+**What Redact does not do**
+
+Note that while this program modifies the current log files to remove some or
+all traces of a given username/host it does NOT modify old caches of those log
+files. For example, this program does not and cannot wipe gzipped backups
+of old log files created by logrotate. Also, there maybe multiple log files
+because old copies are renamed in the format LOGNAME.1 and these files
+are not wiped by default either. However, these files can be wiped by setting
+the appropriate constants in the program (WTMPFILE, UTMPFILE, etc.) and
+recompiling it. Finally, this program currently does not support wiping log
+reports, such as wtmp.report that are sometimes generated.
+
+
+**Getting Started**
+
+Import the library into your project
+
+    #include "xchacha20.h"
+
+Create a XChaCha context
+
+    XChaCha_ctx ctx;
+
+Set up the encryption 256-bit key and 192-bit nonce to be used.
+    xchacha_keysetup(&ctx, key, nonce);
+
+Optionally, set the counter to a different starting value other than zero.
+
+    xchacha_set_counter(&ctx, 0x1);
+
+Then use xchacha_encrypt_bytes or xchacha_encrypt_blocks to encrypt data
+
+    xchacha_encrypt_bytes(&ctx, plaintext, ciphertext, sizeof(plaintext));
+
+
+**To Do**
+
+- [ ] Add a program to calculate and compare test vectors
+
+
+**Contributing**
+
+Pull requests, new feature suggestions, and bug reports/issues are
+welcome.
+
+
+**Versioning**
+
+This project uses semantic versioning 2.0. Version numbers follow the
+MAJOR.MINOR.PATCH format.
+
+
+**License**
+
+This project is licensed under the 3-Clause BSD License also known as the
+*"New BSD License"* or the *"Modified BSD License"*. A copy of the license
+can be found in the LICENSE file. A copy can also be found at the
+[Open Source Institute](https://opensource.org/licenses/BSD-3-Clause)
