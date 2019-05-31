@@ -1,5 +1,5 @@
-# A simple Makefile, to build run: make all 
-TARGET	= redact
+# A simple Makefile, to build run: make all
+TARGET	= test
 
 CC	= gcc
 #compiler flags here
