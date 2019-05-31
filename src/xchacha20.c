@@ -127,7 +127,7 @@ void xchacha_encrypt_bytes(XChaCha_ctx *ctx, const uint8_t *m, uint8_t *c, uint3
   uint32_t j0, j1, j2, j3, j4, j5, j6, j7, j8, j9, j10, j11, j12, j13, j14, j15;
   uint8_t *ctarget;
   uint8_t tmp[64];
-  int i;
+  uint32_t i;
 
   if (!bytes) return;
 

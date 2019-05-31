@@ -45,6 +45,7 @@ Create a XChaCha context
     XChaCha_ctx ctx;
 
 Set up the encryption 256-bit key and 192-bit nonce to be used.
+
     xchacha_keysetup(&ctx, key, nonce);
 
 Optionally, set the counter to a different starting value other than zero.
@@ -54,6 +55,31 @@ Optionally, set the counter to a different starting value other than zero.
 Then use xchacha_encrypt_bytes or xchacha_encrypt_blocks to encrypt data
 
     xchacha_encrypt_bytes(&ctx, plaintext, ciphertext, sizeof(plaintext));
+
+
+**Test Vectors**
+
+In the src folder is a program named test.c It calculates and compares
+XChaCha20 test vectors obtained from two different sources. It will
+compare the output of this XChaCha20 library with known good test vectors
+to ensure this library is working correctly.
+
+To make the test program simply run make
+
+    make
+
+Then run the test program
+
+    ./test
+
+The program will produce the following output if successful
+
+    Cryptographic tests passed
+
+If this library failed to generate the correct ciphertexts, then you will see
+this
+
+    Cryptographic tests failed!
 
 
 **To Do**
