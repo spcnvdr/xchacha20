@@ -1,7 +1,9 @@
-xchacha20 (0.0.1) urgency=low;
-  * Initial commit and now managing project with Git.
+xchacha20 (0.0.3) urgency=low;
+  * Fixed minor typos and errors throughout the project
+  * Corrected inconsistent use of tabs v.s. spaces
+  * Fixed a minor warning issued while compiling the library
 
-  -- Bryan Hawkins <spcnvdrr@protonmail.com> Tue, 28 May 2019 18:11:11 -0500
+  -- Bryan Hawkins <spcnvdrr@protonmail.com> Mon, 03 Jun 2019 11:36:49 -0500
 
 xchacha20 (0.0.2) urgency=low;
   * Added a program to calculate and compare this library's output with
@@ -9,5 +11,11 @@ xchacha20 (0.0.2) urgency=low;
   * Fixed minor errors in the README.md file and xchacha.c
 
   -- Bryan Hawkins <spcnvdrr@protonmail.com> Fri, 31 May 2019 12:49:28 -0500
+
+xchacha20 (0.0.1) urgency=low;
+  * Initial commit and now managing project with Git.
+
+  -- Bryan Hawkins <spcnvdrr@protonmail.com> Tue, 28 May 2019 18:11:11 -0500
+
 
 use the 'date -R' command to make the date string.

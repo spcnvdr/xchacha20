@@ -11,30 +11,33 @@
 #ifndef XCHACHA20_H_
 #define XCHACHA20_H_
 
-/*
- * Key and IV sizes are supported by XChaCha20.
- * All sizes are in bits.
+
+/** Key and IV sizes are supported by XChaCha20.
+ *  All sizes are in bits.
  */
 #define NAME "XChaCha20"
 #define KEYSIZE 256                 /* 256-bits, 32 bytes */
 #define BLOCKSIZE 512               /* 512-bits, 64 bytes */
 #define IVSIZE 192                  /* 192-bits, 24 bytes */
 
+
 /* XChaCha20 block size in bytes */
 #define XCHACHA_BLOCKLENGTH 64
 
-/** The following macros are used to obtain exact-width results. */
 
+/* The following macros are used to obtain exact-width results. */
 #define U8V(v) ((uint8_t)(v) & (0xFF))
 #define U16V(v) ((uint16_t)(v) & (0xFFFF))
 #define U32V(v) ((uint32_t)(v) & (0xFFFFFFFF))
 #define U64V(v) ((uint64_t)(v) & (0xFFFFFFFFFFFFFFFF))
+
 
 /** The following macros return words with their bits rotated over n
  *  positions to the left/right.
  */
 #define ROTL32(v, n) \
   (U32V((v) << (n)) | ((v) >> (32 - (n))))
+
 
 /** The following macros load words from an array of bytes with
  *  different types of endianness, and vice versa.
@@ -68,11 +71,10 @@
   c = PLUS(c,d); b = ROTATE(XOR(b,c), 7);
 
 
-/*
- * ChaCha_ctx is the structure containing the representation of the
- * internal state of the XChaCha cipher.
+/** ChaCha_ctx is the structure containing the representation of the
+ *  internal state of the XChaCha20 cipher.
+ *
  */
-
 typedef struct
 {
   uint32_t input[16];
@@ -80,6 +82,7 @@ typedef struct
 
 
 /* ------------------------------------------------------------------------- */
+
 
 /** hchacha an intermediary step towards XChaCha20 based on the
  * construction and security proof used to create XSalsa20.
@@ -110,43 +113,44 @@ void xchacha_keysetup(XChaCha_ctx *ctx, const uint8_t *k, uint8_t *iv);
 void xchacha_set_counter(XChaCha_ctx *ctx, uint8_t *counter);
 
 
-/*
- * Encryption/decryption of arbitrary length messages.
+/** Encryption/decryption of arbitrary length messages.
  *
- * For efficiency reasons, the API provides two types of
- * encrypt/decrypt functions. The xchacha_encrypt_bytes() function
- * (declared here) encrypts byte strings of arbitrary length, while
- * the xchacha_encrypt_blocks() function (defined later) only accepts
- * lengths which are multiples of CHACHA_BLOCKLENGTH.
+ *  For efficiency reasons, the API provides two types of
+ *  encrypt/decrypt functions. The xchacha_encrypt_bytes() function
+ *  (declared here) encrypts byte strings of arbitrary length, while
+ *  the xchacha_encrypt_blocks() function (defined later) only accepts
+ *  lengths which are multiples of CHACHA_BLOCKLENGTH.
  *
- * The user is allowed to make multiple calls to
- * xchacha_encrypt_blocks() to incrementally encrypt a long message,
- * but he is NOT allowed to make additional encryption calls once he
- * has called xchacha_encrypt_bytes() (unless he starts a new message
- * of course). For example, this sequence of calls is acceptable:
+ *  The user is allowed to make multiple calls to
+ *  xchacha_encrypt_blocks() to incrementally encrypt a long message,
+ *  but he is NOT allowed to make additional encryption calls once he
+ *  has called xchacha_encrypt_bytes() (unless he starts a new message
+ *  of course). For example, this sequence of calls is acceptable:
  *
- * xchacha_keysetup();
+ *  xchacha_keysetup();
  *
- * xchacha_ivsetup();
- * xchacha_encrypt_blocks();
- * xchacha_encrypt_blocks();
- * xchacha_encrypt_bytes();
+ *  xchacha_ivsetup();
+ *  xchacha_encrypt_blocks();
+ *  xchacha_encrypt_blocks();
+ *  xchacha_encrypt_bytes();
  *
- * xchacha_ivsetup();
- * xchacha_encrypt_blocks();
- * xchacha_encrypt_blocks();
+ *  xchacha_ivsetup();
+ *  xchacha_encrypt_blocks();
+ *  xchacha_encrypt_blocks();
  *
- * xchacha_ivsetup();
- * xchacha_encrypt_bytes();
+ *  xchacha_ivsetup();
+ *  xchacha_encrypt_bytes();
  *
- * The following sequence is not:
+ *  The following sequence is not:
  *
- * xchacha_keysetup();
- * xchacha_ivsetup();
- * xchacha_encrypt_blocks();
- * xchacha_encrypt_bytes();
- * xchacha_encrypt_blocks();
+ *  xchacha_keysetup();
+ *  xchacha_ivsetup();
+ *  xchacha_encrypt_blocks();
+ *  xchacha_encrypt_bytes();
+ *  xchacha_encrypt_blocks();
+ *
  */
+
 
 /** Encrypt a set of bytes with XChaCha20
  * @param ctx The XChaCha20 context to use
@@ -180,9 +184,8 @@ void xchacha_decrypt_bytes(XChaCha_ctx* ctx, const uint8_t* ciphertext,
  *  @param length Length of keystream in bytes
  *
  */
-
-
 void xchacha_keystream_bytes(XChaCha_ctx* ctx, uint8_t* keystream, uint32_t length);
+
 
 /** Encrypt/decrypt of blocks.
  *  @param ctx The XChaCha context to use
@@ -191,8 +194,6 @@ void xchacha_keystream_bytes(XChaCha_ctx* ctx, uint8_t* keystream, uint32_t leng
  *  @param blocks The number of 512 blocks to process with XChaCha20
  *
  */
-
-
 #define xchacha_encrypt_blocks(ctx, plaintext, ciphertext, blocks)         \
 		xchacha_encrypt_bytes(ctx, plaintext, ciphertext,                        \
     (blocks) * XCHACHA_BLOCKLENGTH)

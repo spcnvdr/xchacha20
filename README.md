@@ -1,4 +1,4 @@
-# XChaCha20 - Extended Nonce version of ChaCha20
+# XChaCha20 - Extended Nonce Version of ChaCha20
 
 XChaCha20 is a stream cipher based on ChaCha20. XChaCha20 uses a 256-bit
 key and a 192-bit nonce. According to an [IETF draft:](https://tools.ietf.org/html/draft-arciszewski-xchacha-02), "The eXtended-nonce ChaCha cipher construction (XChaCha) allows for
@@ -38,23 +38,33 @@ I am not a cryptographer so use this library at your own risk.
 
 Import the library into your project
 
+```C
     #include "xchacha20.h"
+```
 
 Create a XChaCha context
 
+```C
     XChaCha_ctx ctx;
+```
 
-Set up the encryption 256-bit key and 192-bit nonce to be used.
+Set up the 256-bit encryption key and the 192-bit nonce to be used.
 
+```C
     xchacha_keysetup(&ctx, key, nonce);
+```
 
 Optionally, set the counter to a different starting value other than zero.
 
+```C
     xchacha_set_counter(&ctx, 0x1);
+```
 
 Then use xchacha_encrypt_bytes or xchacha_encrypt_blocks to encrypt data
 
+```C
     xchacha_encrypt_bytes(&ctx, plaintext, ciphertext, sizeof(plaintext));
+```
 
 
 **Test Vectors**
@@ -72,19 +82,20 @@ Then run the test program
 
     ./test
 
-The program will produce the following output if successful
+The program will produce the following output if successful:
 
     Cryptographic tests passed
 
-If this library failed to generate the correct ciphertexts, then you will see
-this
+If this library failed to generate the correct ciphertexts, then something
+is wrong with the library and you will see this output:
 
     Cryptographic tests failed!
 
 
 **To Do**
 
-- [ ] Add a program to calculate and compare test vectors
+- [x] Add a program to calculate and compare test vectors
+- [ ] Find and add more test vectors for XChaCha20
 
 
 **Contributing**
