@@ -1,3 +1,10 @@
+xchacha20 (0.0.4) urgency=low;
+  * Added a new test vector from the latest version of the IETF draft.
+    Found here: https://tools.ietf.org/html/draft-arciszewski-xchacha-03
+  * Updated the README.md file.
+
+  -- Bryan Hawkins <spcnvdrr@protonmail.com> Mon, 17 Jun 2019 12:22:44 -0500
+
 xchacha20 (0.0.3) urgency=low;
   * Fixed minor typos and errors throughout the project
   * Corrected inconsistent use of tabs v.s. spaces

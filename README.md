@@ -19,7 +19,7 @@ is more resistant to nonce misuse.
 
 **More Information**
 
-[IETF XChaCha20 Draft](https://tools.ietf.org/html/draft-arciszewski-xchacha-02)
+[IETF XChaCha20 Draft](https://tools.ietf.org/html/draft-arciszewski-xchacha-03)
 
 [Bernstein's ChaCha Web page](http://cr.yp.to/chacha.html)
 
@@ -70,9 +70,10 @@ Then use xchacha_encrypt_bytes or xchacha_encrypt_blocks to encrypt data
 **Test Vectors**
 
 In the src folder is a program named test.c It calculates and compares
-XChaCha20 test vectors obtained from two different sources. It will
-compare the output of this XChaCha20 library with known good test vectors
-to ensure this library is working correctly.
+XChaCha20 test vectors obtained from two different sources. The test vectors
+were borrowed from the IETF draft regarding XChaCha20 and an example from
+Crypto++ wikipedia. It will compare the output of this XChaCha20 library with
+known good test vectors to ensure this library is working correctly.
 
 To make the test program simply run make
 
