@@ -12,7 +12,7 @@
 #define XCHACHA20_H_
 
 
-/** Key and IV sizes are supported by XChaCha20.
+/** Key and IV sizes that are supported by XChaCha20.
  *  All sizes are in bits.
  */
 #define NAME "XChaCha20"

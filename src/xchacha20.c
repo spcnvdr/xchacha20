@@ -65,18 +65,18 @@ void xchacha_hchacha20(uint8_t *out, const uint8_t *in, const uint8_t *k){
 }
 
 
-/** Setup the ChaCha20 encryption key
- * @param x The ChaCha20 Context to use
+/** Setup the XChaCha20 encryption key
+ * @param x The XChaCha20 Context to use
  * @param k A buffer holding the encryption key to use
  * @note Valid key sizes are 256 bits, and the only valid IV size
- * is 96 bits.
+ * is 192 bits.
  *
  */
 void xchacha_keysetup(XChaCha_ctx *ctx, const uint8_t *k, uint8_t *iv){
 	/* The sub-key to use */
 	uint8_t k2[32];
 
-	/* Generate the sub-key to use from the key and 192-bit iv
+	/* Generate the sub-key to use from the 256-bit key and 192-bit iv
 	 * We then use this sub-key and the last 8 bytes of the iv
 	 * as normal.
 	 */
@@ -114,8 +114,8 @@ void xchacha_set_counter(XChaCha_ctx *ctx, uint8_t *counter){
 }
 
 
-/** Encrypt data with the ChaCha20 stream cipher
- * @param x The ChaCha20 context with the cipher's state to use
+/** Encrypt data with the XChaCha20 stream cipher
+ * @param x The XChaCha20 context with the cipher's state to use
  * @param m The plaintext to encrypt
  * @param c A buffer to hold the ciphertext created from the plaintext
  * @param bytes The length of the plaintext to encrypt
@@ -257,8 +257,8 @@ void xchacha_encrypt_bytes(XChaCha_ctx *ctx, const uint8_t *m, uint8_t *c, uint3
 }
 
 
-/** Decrypt data with the ChaCha20 stream cipher
- * @param x The ChaCha20 context with the cipher's state to use
+/** Decrypt data with the XChaCha20 stream cipher
+ * @param x The XChaCha20 context with the cipher's state to use
  * @param c The ciphertext to decrypt
  * @param m A buffer to hold the plaintext
  * @param bytes The number of bytes of ciphertext to decrypt
@@ -272,7 +272,7 @@ void xchacha_decrypt_bytes(XChaCha_ctx *ctx, const uint8_t *c, uint8_t *m, uint3
 
 
 /** Generate a keystream from encrypting a zero byte plaintext
- * @param x The ChaCha context to use
+ * @param x The XChaCha context to use
  * @param stream A buffer to store the generated keystream
  * @param bytes The number of bytes of keystream to generate
  * @note Mostly for testing purposes

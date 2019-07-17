@@ -6,7 +6,7 @@ ChaCha-based ciphersuites to accept a 192-bit nonce with similar guarantees
 to the original construction, except with a much lower probability of
 nonce misuse occurring. This enables XChaCha constructions to be stateless,
 while retaining the same security assumptions as ChaCha."
-Also, since XChaCha20 does not use any look up tables, it is immune to
+Also, XChaCha20 does not use any look up tables and is immune to
 timing attacks. This library is based on Daniel J. Bernstein's reference
 implementation of the ChaCha stream cipher.
 
